@@ -1,0 +1,131 @@
+@use './variables' as *;
+@use './breakpoints' as *;
+
+.files-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: calc(100vh - 50px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: hidden;
+    list-style: none;
+    animation: nav-bgc 1s ease forwards;
+    li {
+        position: relative;
+        z-index: 101;
+        color: $white;
+        width: 100%;
+        text-align: center;
+        font-family: $font-mono;
+        opacity: 0;
+        padding: 10px;
+        animation: li-animation 1s ease forwards;
+        margin: 5px 0px;
+        background-color: $medium-grey;
+        transition: all 0.3s;
+        box-shadow: 0px 1px 2px rgba($black, $alpha: 0.5);
+        font-size: 13px;
+        cursor: pointer;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        svg {
+            display: inline;
+            margin-right: 2px;
+        }
+        &:nth-child(1) {
+            margin-top: 15px;
+        }
+        &:hover, &:active {
+            color: $light-black;
+            background-color: $orange;
+            font-size: 15px;
+            path {
+              fill: $red-orange;
+            }
+        }
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      z-index: 99;
+      background-color: $red-orange;
+      animation: nav-list 1s ease forwards;
+      width: 100%;
+      height: 100vh;
+      transform-origin: top left;
+    }
+
+    h3 {
+        opacity: 0;
+        z-index: 100;
+        color: $white;
+        font-family: $font-mono;
+        animation: li-animation 1.5s ease forwards;
+        margin: 15px 0px;
+    }
+}
+
+@include sm {
+    .files-list {
+      width: 55%;
+      overflow-y: auto;
+      li {
+        font-size: 16px;
+        padding: 10px 30px 10px 20px;
+        &:hover, &:active {
+            font-size: 17px;
+        }
+      }
+    }
+}
+
+@include md {
+    .files-list {
+      width: 30%;
+    }
+}
+
+
+@keyframes nav-bgc {
+  0% {
+    background-color: transparent;
+    overflow-y: hidden;
+  }
+  90% {
+    background-color: transparent;
+    overflow-y: hidden;
+  }
+  100% {
+    background-color: $red-orange;
+    overflow-y: auto;
+  }
+}
+
+@keyframes nav-list {
+    0% {
+      transform: scale(0, 0);
+    }
+    100% {
+      transform: scale(1, 1);
+    }
+}
+
+@keyframes li-animation {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}

@@ -1,0 +1,38 @@
+@use './variables' as *;
+
+.notifications {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    height: min-content;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000;
+    text-align: center;
+    transform: translateX(200%);
+    color: $white;
+    animation: notifications 2.5s ease;
+    &__success {
+        background-color: $successBgc;  
+    }
+    &__error {
+        background-color: $errorBgc;
+    }
+}
+
+@keyframes notifications {
+    0% {
+        transform: translateX(200%);
+    }
+    20% {
+        transform: translateX(0%);
+    }
+    80% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(200%);
+    }
+
+}

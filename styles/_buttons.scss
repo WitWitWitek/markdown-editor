@@ -1,0 +1,84 @@
+@use './variables' as *;
+@use './breakpoints' as *;
+
+@mixin btn(
+    $bg-color: $red-orange,
+    $bg-hover: $orange
+) { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    padding: 5px;
+    border: none;
+    background-color: $bg-color;
+    border-radius: 5px;
+    color: $white;
+    cursor: pointer;
+    &:hover {
+        color: $light-black;
+        background-color: $bg-hover;
+        path {
+            fill: $red-orange;
+        }
+    }
+}
+
+.btn--menu {
+    @include btn($medium-grey, $medium-light-grey);
+    z-index: 1;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    .hamburger-react {
+        z-index: 0;
+    }
+}
+
+.btn--save {
+    @include btn;
+    span {
+        display: none;
+    }
+}
+
+.btn--delete {
+    @include btn(transparent, $medium-light-grey);
+}
+
+.btn--create-new {
+    @extend .btn--delete;
+    margin: 0; 
+}
+
+.btn--preview {
+    @include btn(transparent, $medium-light-grey);;
+    padding: 0 5px;
+    position: fixed;
+    right: 10px;
+    top: 60px;
+    z-index: 100;
+}
+
+@include sm {
+    .btn {
+        &--save {
+            span {
+                margin-left: 5px;
+                display: block;
+            }
+        }
+    }
+}
+
+@include md {
+    .btn {
+        &--save {
+            span {
+                display: block;
+            }
+        }
+    }
+}
